@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="utf-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- Color theme for statusbar (Android only) -->
+    <meta name="theme-color" content="#2196f3">
+    <!-- Your app title -->
+    <title>My App</title>
+    <!-- Path to Framework7 Library Bundle CSS -->
+    <link rel="stylesheet" href="lib/framework7-bundle.min.css">
+    <!-- CSS PERSONALIZADO PARA MENU-->
+    <link rel="stylesheet" href="css/index.css">
+    <!--Ícones Material Design-->
+    <link rel="stylesheet" href="css/materialdesignicons.min.css">
+    <style>
+       
+    </style>
+</head>
+
+<body>
+    <!-- App root element -->
+    <div id="app">
+
+        <!-- Your main view, should have "view-main" class -->
+        <div class="view view-main">
+            <!-- Initial Page, "data-name" contains page name -->
+            <div data-name="notificacoes" class="page">
+
+                <!-- Top Navbar -->
+                <div class="conta-nav">
+                    <a  class="icon" href="/index/">
+                        <i class="mdi mdi-arrow-left-top"></i>
+                    </a>
+                    <span class="conta-texto">Notificações</span>
+                </div>
+
+                <!-- Scrollable page content -->
+                <div class="notificacoes-content">
+                    <!-- Exemplo de notificação 1 -->
+                    <div class="notification-item">
+                        <i class="mdi mdi-bell-alert-outline notification-icon"></i>
+                        <div class="notification-text">
+                            <div class="notification-title">Alerta de segurança ativado</div>
+                            <div class="notification-time">10 minutos atrás</div>
+                        </div>
+                    </div>
+
+                    <!-- Exemplo de notificação 2 -->
+                    <div class="notification-item">
+                        <i class="mdi mdi-account-alert-outline notification-icon"></i>
+                        <div class="notification-text">
+                            <div class="notification-title">Contato de emergência notificado</div>
+                            <div class="notification-time">20 minutos atrás</div>
+                        </div>
+                    </div>
+
+                    <!-- Exemplo de notificação 3 -->
+                    <div class="notification-item">
+                        <i class="mdi mdi-map-marker-alert-outline notification-icon"></i>
+                        <div class="notification-text">
+                            <div class="notification-title">Localização enviada</div>
+                            <div class="notification-time">30 minutos atrás</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Path to Framework7 Library Bundle JS-->
+    <script type="text/javascript" src="lib/framework7-bundle.min.js"></script>
+	<!-- jQuery -->
+	<script type="text/javascript" src="lib/jquery-3.7.0.min.js"></script>	
+    <!-- Roteamento do app-->
+    <script type="text/javascript" src="js/routes.js"></script>
+    <script src="cordova.js"></script>
+    <script src="js/index.js"></script>
+    <script>
+        const notifications = [
+            { id: 1, message: "Alerta ativado às 14:23 na sua localização.", timestamp: "14:23" },
+            { id: 2, message: "Alerta de emergência recebido às 15:12.", timestamp: "15:12" }
+        ];
+
+        function displayNotifications() {
+            const notificationsList = document.getElementById('notifications-list');
+            notificationsList.innerHTML = notifications.map(notification => `
+                <div class="notificacao-item">
+                    <span>${notification.message}</span>
+                    <span class="notificacao-timestamp">${notification.timestamp}</span>
+                </div>
+            `).join('');
+        }
+
+        document.addEventListener("DOMContentLoaded", displayNotifications);
+    </script>
+</body>
+
+</html>

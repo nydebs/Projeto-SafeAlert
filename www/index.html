@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#2196f3">
+    <title>SafeAlert</title>
+    <link rel="stylesheet" href="lib/framework7-bundle.min.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/materialdesignicons.min.css">
+
+
+</head>
+
+<body>
+    <!-- App root element -->
+    <div id="app">
+        <!-- Your main view, should have "view-main" class -->
+        <div class="view view-main">
+
+            <!-- TAB BAR-->
+            <div id="menuPrincipal" class="toolbar toolbar-bottom">
+                <div class="toolbar-inner display-flex">
+                    <a href="/sobre/" class="tab-link link">
+                        <i class="mdi mdi-information-outline"></i>
+                        <span></span>
+                    </a>
+                    <a href="/gps/" class="tab-link link">
+                        <i class="mdi mdi-map"></i>
+                        <span></span>
+                    </a>
+                    <a href="/index/" class="tab-link link active">
+                        <i class="mdi mdi-home-alert"></i>
+                        <span></span>
+                    </a>
+                    <a href="/contatos/" class="tab-link link">
+                        <i class="mdi mdi-contacts"></i>
+                        <span></span>
+                    </a>
+                    <a href="/config/" class="tab-link link">
+                        <i class="mdi mdi-cog"></i>
+                        <span></span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Initial Page, "data-name" contains page name -->
+            <div data-name="index" class="page color-theme-blue">
+
+                <!-- Top Navbar -->
+                <div class="top-nav">
+                    <h1 class="title-logo"><span class="safe">Safe</span><span class="alert">Alert!</span></h1>
+                    <a href="/notificacoes/" class="btn-notif" data-count="0">
+                        <i class="mdi mdi-bell-outline"></i>
+                    </a>
+                </div>
+                <!-- Scrollable page content -->
+                <div class="page-content scrollable">
+                    <div class="block">
+                            <div class="perfil">
+                                <input type="file" id="file-input" accept="image/*" style="display: none;" />
+                                <div class="perfil-change" onclick="toggleMenu();">
+                                <img id="perfil-img" src="./img/user.jpg" alt="Foto de Perfil" />
+                                </div>
+                                <div id="menu" class="menu" style="display: none;">
+                                    <button id="change-btn">Alterar Foto</button>
+                                    <button id="remove-btn">Remover Perfil</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-user">
+                            <h1 class="msg-user" >Olá, Amongus!</h1> 
+
+                        </div>
+                        <div class="block">
+                            <form id="palavra-chave">
+                                <h2>Insira sua palavra-chave de alerta</h2>
+                                <input type="text" id="keyword" placeholder="Digite a palavra-chave" />
+                                <button type="submit" id = "registerKeyword">Registrar</button>
+                                
+                            </form>
+                </div>
+                <div id="keyword-display" style="margin-top: 20px;">
+                    <!-- Aqui será exibida a palavra registrada -->
+                </div>
+                <div class="lig-des scrollable">
+                    <h3>Ative ou desative o SafeAlert quando quiser.<br><p>OBS: Recomenda-se ativar o SafeAlert apenas ao sair de casa ou em situações de risco, para evitar o consumo excessivo de bateria e memória do dispositivo.
+                    </p></h3>
+                    <button id="toggleRecognition">Ativar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Path to Framework7 Library Bundle JS-->
+    <script type="text/javascript" src="lib/framework7-bundle.min.js"></script>
+	<!-- jQuery -->
+	<script type="text/javascript" src="lib/jquery-3.7.0.min.js"></script>	
+    <!-- Roteamento do app-->
+    <script type="text/javascript" src="js/routes.js"></script>
+    <script src="cordova.js"></script>
+    <script src="js/index.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const perfilImg = document.getElementById("perfil-img");
+            const fileInput = document.getElementById("file-input");
+            const changeBtn = document.getElementById("change-btn");
+            const removeBtn = document.getElementById("remove-btn");
+            const menu = document.getElementById("menu");
+        
+            // Função para alternar visibilidade do menu
+            window.toggleMenu = function () {
+                menu.style.display = menu.style.display === "none" ? "block" : "none";
+            };
+        
+            // Carregar nova imagem de perfil
+            changeBtn.addEventListener("click", function () {
+                fileInput.click();
+                menu.style.display = "none"; // Oculta o menu após clicar
+            });
+        
+            fileInput.addEventListener("change", function (event) {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        perfilImg.src = e.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                }
+                menu.style.display = "none"; // Oculta o menu após alterar a imagem
+            });
+        
+            // Remover imagem de perfil e voltar para a imagem padrão
+            removeBtn.addEventListener("click", function () {
+                perfilImg.src = "./img/user.jpg";
+                menu.style.display = "none"; // Oculta o menu após remover a imagem
+            });
+        
+            // Ocultar o menu quando clicar fora dele
+            document.addEventListener("click", function (event) {
+                if (!menu.contains(event.target) && event.target !== perfilImg) {
+                    menu.style.display = "none";
+                }
+            });
+        });
+        
+    </script>
+    <!-- notificacoes -->
+    <script>
+        const notifications = [
+            { id: 1, message: "Alerta ativado às 14:23 na sua localização.", timestamp: "14:23" },
+            { id: 2, message: "Alerta de emergência recebido às 15:12.", timestamp: "15:12" }
+        ];
+
+        function updateNotificationCount() {
+            const notifButton = document.querySelector('.btn-notif');
+            notifButton.setAttribute('data-count', notifications.length);
+        }
+
+        document.addEventListener("DOMContentLoaded", updateNotificationCount);
+    </script>
+    <script>
+        document.addEventListener('deviceready', function() {
+            // Mostra a splash screen manualmente ao iniciar o app
+            navigator.splashscreen.show();
+        
+            // Define o tempo para ocultar a splash screen (aqui, 3 segundos)
+            setTimeout(function() {
+                navigator.splashscreen.hide();
+            }, 3000); // 3000 milissegundos = 3 segundos
+        });        
+    </script>
+    <script>
+        const toggleButton = document.getElementById("toggleRecognition");
+            toggleButton.addEventListener("click", function () {
+                if (toggleButton.textContent === "Ativar") {
+                    toggleButton.textContent = "Desativar";
+                    // Lógica de ativação
+                } else {
+                    toggleButton.textContent = "Ativar";
+                    // Lógica de desativação
+                }
+        });
+
+    </script>
+    <script>
+                    // Função para registrar a palavra-chave
+            function registerKeyword(event) {
+                event.preventDefault(); // Previne o envio do formulário
+                const keywordInput = document.getElementById("keyword");
+                const keyword = keywordInput.value.trim();
+
+                if (keyword) {
+                    // Salva a palavra-chave no localStorage
+                    localStorage.setItem("alertKeyword", keyword);
+                    keywordInput.value = ""; // Limpa o campo de input
+                    displayKeyword(); // Atualiza a exibição
+                    alert("Palavra-chave registrada com sucesso!");
+                } else {
+                    alert("Por favor, insira uma palavra-chave.");
+                }
+            }
+
+            // Função para exibir a palavra-chave registrada
+            function displayKeyword() {
+                const keywordDisplay = document.getElementById("keyword-display");
+                const keyword = localStorage.getItem("alertKeyword");
+
+                if (keyword) {
+                    // Exibe a palavra-chave com uma opção para editar
+                    keywordDisplay.innerHTML = `
+                        <h3>Palavra-chave registrada:</h3>
+                        <p id="current-keyword">${keyword}</p>
+                        <button id="editKeyword">Editar</button>
+                    `;
+
+                    // Adiciona evento ao botão de editar
+                    document.getElementById("editKeyword").addEventListener("click", () => {
+                        editKeyword(keyword);
+                    });
+                } else {
+                    keywordDisplay.innerHTML = "<p>Nenhuma palavra-chave registrada.</p>";
+                }
+            }
+
+            // Função para editar a palavra-chave
+            function editKeyword(currentKeyword) {
+                const keywordDisplay = document.getElementById("keyword-display");
+
+                // Troca a exibição pela interface de edição
+                keywordDisplay.innerHTML = `
+                    <h3>Editando Palavra-chave</h3>
+                    <input type="text" id="editKeywordInput" value="${currentKeyword}" />
+                    <button id="saveKeyword">Salvar</button>
+                    <button id="cancelEdit">Cancelar</button>
+                `;
+
+                // Adiciona eventos para salvar ou cancelar a edição
+                document.getElementById("saveKeyword").addEventListener("click", () => {
+                    const newKeyword = document.getElementById("editKeywordInput").value.trim();
+                    if (newKeyword) {
+                        localStorage.setItem("alertKeyword", newKeyword);
+                        displayKeyword(); // Atualiza a exibição
+                        alert("Palavra-chave editada com sucesso!");
+                    } else {
+                        alert("A palavra-chave não pode estar vazia.");
+                    }
+                });
+
+                document.getElementById("cancelEdit").addEventListener("click", displayKeyword);
+            }
+
+            // Adiciona evento ao formulário para registrar a palavra-chave
+            document.getElementById("palavra-chave").addEventListener("submit", registerKeyword);
+
+            // Inicializa a exibição da palavra-chave ao carregar a página
+            document.addEventListener("DOMContentLoaded", displayKeyword);
+
+
+    </script>
+</body>
+
+</html>

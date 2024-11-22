@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="utf-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- Color theme for statusbar (Android only) -->
+    <meta name="theme-color" content="#2196f3">
+    <!-- Your app title -->
+    <title>My App</title>
+    <!-- Path to Framework7 Library Bundle CSS -->
+    <link rel="stylesheet" href="lib/framework7-bundle.min.css">
+    <!-- CSS PERSONALIZADO PARA MENU-->
+    <link rel="stylesheet" href="css/index.css">
+    <!--Ícones Material Design-->
+    <link rel="stylesheet" href="css/materialdesignicons.min.css">
+</head>
+
+<body>
+    <!-- App root element -->
+    <div id="app">
+
+        <!-- Your main view, should have "view-main" class -->
+        <div class="view view-main">
+            <!-- Initial Page, "data-name" contains page name -->
+            <div data-name="sobre" class="page">
+
+                <!-- Top Navbar -->
+                <div class="sobre-navbar">
+                        <h5>Sobre nós</h5>
+                </div>
+
+                <!-- Scrollable page content -->
+                <div class="sobre-content">
+                    <div class="content-sobre scrollable">
+                        <h6>SafeAlert: Segurança ao Seu Alcance <br></h6>
+                        <p><br>O SafeAlert é um aplicativo desenvolvido para oferecer mais segurança pessoal em ambientes urbanos. Nossa missão é tornar a vida nas cidades mais segura e conectada, permitindo que os usuários possam rapidamente alertar pessoas de confiança em caso de emergência.<br>
+                        </p>
+                        <p>Com uma tecnologia de reconhecimento de voz e ativação por palavra-chave, o SafeAlert permite que você envie sua localização para contatos de confiança sem precisar mexer no celular. Ao registrar uma palavra-chave, você pode ativar o app para que ele reconheça essa palavra e envie um alerta automaticamente.<br></p> 
+                        <p>Como Funciona?<br></p>
+                            <p><strong> Ative o SafeAlert:</strong> O aplicativo permanece em segundo plano, pronto para responder ao comando de emergência.<br></p>
+                            <p><strong>Palavra-chave de Alerta:</strong> Defina uma palavra que, quando falada, ativa automaticamente o envio do seu alerta e localização para contatos previamente cadastrados. <br></p>
+                            <p><strong>Contato Rápido e Discreto:</strong> Sua localização é enviada por SMS, de forma discreta, para que você possa receber ajuda rapidamente. <br></p>
+                            <p><strong>Privacidade e Segurança:</strong> Nós levamos sua privacidade a sério. O SafeAlert só acessa sua localização quando o alerta é ativado, e seus dados estão protegidos com as melhores práticas de segurança digital.<br></p>
+                        </p>   
+                        <p>Este aplicativo foi desenvolvido para melhorar a segurança pessoal e facilitar a comunicação em situações de emergência.</p>
+                        <p>Desenvolvido por Deborah Evelyn.</p>
+                        <p><a href="/creditos/" style="color: #ec4434 ;">Colaboradores.</a></p>
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Path to Framework7 Library Bundle JS-->
+    <script type="text/javascript" src="lib/framework7-bundle.min.js"></script>
+	<!-- jQuery -->
+	<script type="text/javascript" src="lib/jquery-3.7.0.min.js"></script>	
+    <!-- Roteamento do app-->
+    <script type="text/javascript" src="js/routes.js"></script>
+    <script src="cordova.js"></script>
+    <script src="js/index.js"></script>
+</body>
+
+</html>

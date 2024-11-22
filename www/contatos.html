@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="utf-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- Color theme for statusbar (Android only) -->
+    <meta name="theme-color" content="#2196f3">
+    <!-- Your app title -->
+    <title>My App</title>
+    <!-- Path to Framework7 Library Bundle CSS -->
+    <link rel="stylesheet" href="lib/framework7-bundle.min.css">
+    <!-- CSS PERSONALIZADO PARA MENU-->
+    <link rel="stylesheet" href="css/index.css">
+    <!--Ícones Material Design-->
+    <link rel="stylesheet" href="css/materialdesignicons.min.css">
+
+
+</head>
+
+<body>
+    <!-- App root element -->
+    <div id="app">
+
+        <!-- Your main view, should have "view-main" class -->
+        <div class="view view-main">
+            <!-- Initial Page, "data-name" contains page name -->
+            <div data-name="contatos" class="page">
+
+                <!-- Top Navbar -->
+                <div class="contact-nav">
+                    <h1>Contatos <span class="phone"><i class="mdi mdi-phone-alert-outline"></i></span></h1>
+                </div>
+
+                <!-- Scrollable page content -->
+                <div class="cont-page-content scrollable">
+                    <div class="block">
+                        <form>
+                            <h2>Adicione Contatos de Emergência</h2>
+                            <input type="text" id="contactName" placeholder="Nome do contato">
+                            <input type="text" id="contactPhone" placeholder="Número de telefone (somente números)">
+                            <button class="addCont">Adicionar Contato</button>
+                            <h2>Lista de Contatos</h2>
+                            <ul id="contactList">
+                                <li>Amongus Sus Lima da Silva - <a href="sms:+55 (xx) xxxxx-xxxx" class="contact-phone">+55 (xx) xxxxx-xxxx</a>
+                                    <button class="remove-btn" data-index="0">Remover</button>
+                                </li>
+                                <li>Jonny Lawrense Slk - <a href="sms:+55 (xx) xxxxx-xxxx" class="contact-phone">+55 (xx) xxxxx-xxxx</a>
+                                    <button class="remove-btn" data-index="1">Remover</button>
+                                </li>
+                            </ul>
+
+                            
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Path to Framework7 Library Bundle JS-->
+    <script type="text/javascript" src="lib/framework7-bundle.min.js"></script>
+	<!-- jQuery -->
+	<script type="text/javascript" src="lib/jquery-3.7.0.min.js"></script>	
+    <!-- Roteamento do app-->
+    <script type="text/javascript" src="js/routes.js"></script>
+    <script src="cordova.js"></script>
+    <script>
+        document.addEventListener('page:init', function (e) {
+            if (e.target.matches('.page[data-name="contatos"]')) {
+                displayContacts(); // Exibe os contatos salvos quando a página de contatos é carregada
+            }
+        });        
+    </script>
+    <script>
+        // Adicionar Contato
+            // Função para adicionar contato
+            function addContact() {
+                const name = document.getElementById("contactName").value.trim();
+                const phone = document.getElementById("contactPhone").value.trim();
+
+                // Obter os contatos existentes
+                const contacts = JSON.parse(localStorage.getItem("contactPhone")) || [];
+
+                // Verificar o limite de contatos
+                if (contacts.length >= 5) {
+                    alert("Você pode adicionar no máximo 5 contatos de emergência.");
+                    return;
+                }
+
+                // Validar os campos
+                if (!name || !phone) {
+                    alert("Por favor, preencha todos os campos.");
+                    return;
+                }
+
+                // Formatar o número de telefone
+                const formattedPhone = formatPhone(phone);
+
+                if (!formattedPhone) {
+                    alert("Número de telefone inválido. Use o formato correto.");
+                    return;
+                }
+
+                // Criar objeto do contato
+                const contact = { name, phone: formattedPhone };
+                contacts.push(contact);
+
+                // Salvar no localStorage
+                localStorage.setItem("contactPhone", JSON.stringify(contacts));
+
+                alert("Contato salvo com sucesso!");
+
+                // Limpar os campos
+                document.getElementById("contactName").value = "";
+                document.getElementById("contactPhone").value = "";
+
+                // Atualizar a lista de contatos
+                displayContacts();
+            }
+
+            // Função para formatar o número de telefone
+            function formatPhone(phone) {
+                const cleaned = phone.replace(/\D/g, ""); // Remove caracteres não numéricos
+
+                // Verifica se o número possui 11 dígitos
+                if (cleaned.length === 11) {
+                    const formatted = `+55 (${cleaned.slice(0, 2)}) ${cleaned.slice(2, 7)}-${cleaned.slice(7)}`;
+                    return formatted;
+                }
+
+                return null; // Número inválido
+            }
+
+            // Função para exibir os contatos
+            function displayContacts() {
+                const contacts = JSON.parse(localStorage.getItem("contactPhone")) || [];
+                const contactList = document.getElementById("contactList");
+
+                // Limpar a lista
+                contactList.innerHTML = "";
+
+                if (contacts.length === 0) {
+                    contactList.innerHTML = "<li>Nenhum contato salvo.</li>";
+                    return;
+                }
+
+                // Adicionar cada contato na lista
+                contacts.forEach((contact, index) => {
+                    const listItem = document.createElement("li");
+                    listItem.innerHTML = `
+                        ${contact.name} - <a href="sms:${contact.phone}" class="contact-phone">${contact.phone}</a>
+                        <button class="remove-btn" data-index="${index}" style="margin-left: 10px;">Remover</button>
+                    `;
+                    contactList.appendChild(listItem);
+                });
+
+                // Adicionar evento de remoção aos botões
+                document.querySelectorAll(".remove-btn").forEach(button => {
+                    button.addEventListener("click", function () {
+                        const index = this.getAttribute("data-index");
+                        removeContact(index);
+                    });
+                });
+            }
+
+            // Função para remover um contato
+            function removeContact(index) {
+                const contacts = JSON.parse(localStorage.getItem("contactPhone")) || [];
+                contacts.splice(index, 1); // Remove pelo índice
+                localStorage.setItem("contactPhone", JSON.stringify(contacts)); // Atualiza o localStorage
+                displayContacts(); // Atualiza a lista
+            }
+
+            // Inicializar a exibição ao carregar a página
+            document.addEventListener("DOMContentLoaded", function () {
+                displayContacts();
+
+                // Associar o evento ao botão "Adicionar Contato"
+                document.querySelector(".addCont").addEventListener("click", function (event) {
+                    event.preventDefault(); // Prevenir comportamento padrão do botão
+                    addContact();
+                });
+            });
+
+    </script>
+</body>
+
+</html>

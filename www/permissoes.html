@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="utf-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- Color theme for statusbar (Android only) -->
+    <meta name="theme-color" content="#2196f3">
+    <!-- Your app title -->
+    <title>My App</title>
+    <!-- Path to Framework7 Library Bundle CSS -->
+    <link rel="stylesheet" href="lib/framework7-bundle.min.css">
+    <!-- CSS PERSONALIZADO PARA MENU-->
+    <link rel="stylesheet" href="css/index.css">
+    <!--Ícones Material Design-->
+    <link rel="stylesheet" href="css/materialdesignicons.min.css">
+    
+</head>
+
+<body>
+    <!-- App root element -->
+    <div id="app">
+
+        <!-- Your main view, should have "view-main" class -->
+        <div class="view view-main">
+            <!-- Initial Page, "data-name" contains page name -->
+            <div data-name="permissoes" class="page">
+
+                <!-- Top Navbar -->
+                <div class="conta-nav">
+                    <a  class="icon" href="/index/">
+                        <i class="mdi mdi-arrow-left-top"></i>
+                    </a>
+                    <span class="conta-texto">Permissões</span>
+                </div>
+                <!-- Scrollable page content -->
+                <div class="permissoes-container">
+                    <h2>Permissões do Aplicativo</h2>
+                    <form id="permissoes-form">
+                        <div class="permissao-item">
+                            <label for="localizacao">Acesso à Localização</label>
+                            <input type="checkbox" id="localizacao" checked>
+                        </div>
+                        <div class="permissao-item">
+                            <label for="microfone">Acesso ao Microfone</label>
+                            <input type="checkbox" id="microfone" checked>
+                        </div>
+                        <div class="permissao-item">
+                            <label for="sms">Enviar SMS</label>
+                            <input type="checkbox" id="sms" checked>
+                        </div>
+                        <div class="permissao-item">
+                            <label for="notificacoes">Enviar Notificações</label>
+                            <input type="checkbox" id="notificacoes" checked>
+                        </div>
+                        <div class="permissao-item">
+                            <label for="internet">Acesso à Internet</label>
+                            <input type="checkbox" id="internet" checked>
+                        </div>
+                        <div class="permissao-item">
+                            <label for="galeria">Acesso à Galeria</label>
+                            <input type="checkbox" id="galeria" checked>
+                        </div>
+                        <button type="submit">Salvar Permissões</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Path to Framework7 Library Bundle JS-->
+    <script type="text/javascript" src="lib/framework7-bundle.min.js"></script>
+	<!-- jQuery -->
+	<script type="text/javascript" src="lib/jquery-3.7.0.min.js"></script>	
+    <!-- Roteamento do app-->
+    <script type="text/javascript" src="js/routes.js"></script>
+    <script src="cordova.js"></script>
+    <script src="js/index.js"></script>
+</body>
+
+</html>

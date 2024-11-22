@@ -1,0 +1,1003 @@
+:root{
+    --branco: #ffff;
+    --gelo: #f1f1f1;
+    --azul: #0494d3;
+    --vermelho: #ec4434;
+    --preto: #2a2a2a;
+
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+body{
+    font-family: sans-serif;
+    overflow: hidden;
+}
+
+.toolbar{
+    height: 80px;
+}
+
+.tab-link{
+    display: flex;
+    justify-content: center;
+    flex-flow: column wrap;
+}
+
+.toolbar-inner{
+    background-color:  #04192f ;
+    border-top: 1px solid var(--gelo);
+}
+
+.toolbar-inner .link{    
+    flex:1;
+    height: 80px;  
+    line-height: 25px; 
+	font-weight:bold;
+    color: var(--branco);    
+}
+
+.toolbar-inner .link:not(.active){
+    color: var(--azul);
+	font-weight:normal;
+}
+
+.toolbar-inner > .link i{
+    font-size: 28px;
+}
+
+.top-nav {
+    width: 100%;
+    background-color: #04192f;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--gelo);
+    justify-content: space-between;
+}
+
+.title-logo{
+    font-weight: 600;
+    margin-left: 5%;
+}
+
+.safe{
+    color: var(--azul);
+}
+
+.alert{
+    color: var(--vermelho);
+}
+
+.btn-notif{
+    background-color:  #04192f;
+    width: 40px;
+    height: 40px;
+    margin-right: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 1px solid ;
+    font-size: 24px;
+    color: var();
+}
+
+.btn-notif::before{
+    content: attr(data-count);
+    background: var(--vermelho);
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: var(--branco);
+    position: absolute;
+    top: 5px;
+    right: 0px;
+    margin-right: 5%;
+}
+
+.btn-notif[data-count="0"]::before{
+    display: none;
+}
+
+a{
+    color: var(--azul);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.page-content {
+    background-color: var(--branco);
+    flex-grow: 1; /* Permite que o conteúdo preencha o espaço disponível */
+    height: auto; /* Remove qualquer limite fixo de altura */
+    overflow-y: auto; /* Habilita o scroll no conteúdo */
+    -webkit-overflow-scrolling: touch; /* Para um scroll mais suave em dispositivos móveis */
+    padding: 20px; /* Adiciona um espaçamento interno */
+    overflow: scroll;
+    scrollbar-width: none;
+}
+
+.page-content::-webkit-scrollbar { 
+    display: none; /* Chrome, Safari e Edge */
+}
+
+.scrollable {
+    max-height: calc(100vh - 140px); /* Altura total menos a altura da barra superior e inferior */
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.block{
+    display: flex; /* Ativa o Flexbox */
+    flex-direction: column; /* Define a direção dos itens como coluna */
+    align-items: center; /* Centraliza os itens horizontalmente */
+    margin-bottom: 2%;
+}
+
+.perfil{
+    width: 150px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 1px solid var(--gelo);
+    overflow: hidden;
+    cursor: pointer;
+}
+
+#perfil-img{
+    width: 150px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    object-fit: cover;
+
+}
+
+.msg-user{
+    margin-top: 0%;
+    font-size: 25px;
+    color: #2a2a2a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.menu {
+    position: absolute;
+    top: 120px; /* Posição do menu abaixo da imagem de perfil */
+    left: 50%;
+    transform: translateX(-50%); /* Centraliza o menu */
+    background: white; /* Cor de fundo do menu */
+    border: none; /* Borda do menu */
+    border-radius: 5px; /* Cantos arredondados */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Sombra */
+    z-index: 10; /* Para que fique acima de outros elementos */
+}
+
+.menu button {
+    width: 100%; /* O botão ocupa toda a largura do menu */
+    padding: 10px; /* Espaçamento interno do botão */
+    border: none; /* Remove borda padrão */
+    background: none; /* Remove fundo padrão */
+    cursor: pointer; /* Cursor de mão ao passar sobre o botão */
+    color: #2a2a2a;
+    flex: 1; /* Faz com que os botões ocupem o mesmo espaço */
+    font-weight: 600;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    display: flex;
+    align-items: center; /* Alinha verticalmente o ícone e o texto */
+    justify-content: center; /* Alinha horizontalmente o ícone e o texto */
+}
+
+.menu button:hover {
+    background: #f0f0f0; /* Cor de fundo ao passar o mouse */
+}
+h2{
+    width: calc(100% - 20px);
+    margin-top: 0%;
+    font-size: 25px;
+    color: #2a2a2a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/*contatos navbar*/
+
+.contact-nav {
+    width: 100%;
+    background-color:  #04192f;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--gelo);
+    justify-content: center;
+    color: var(--azul);
+}
+
+.phone{
+    color: var(--vermelho);
+}
+
+.contact-nav h1 {
+    margin: 0;
+    font-size: 1.5em;
+}
+
+.page-content {
+    padding: 20px;
+}
+
+.block {
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza o conteúdo no centro */
+}
+
+input[type="text"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Garante que padding e border não afetem a largura total */
+}
+
+button {
+    width: calc(100% - 20px);
+    background-color: #2196f3;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+}
+
+button:hover {
+    background-color: #1976d2;
+}
+
+#contatosLista {
+    margin-top: 10px;
+}
+
+.lig-des{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.lig-des button{
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items:center;
+    justify-content:center;
+    background-color: #ec4434;
+    font-size: 15px;
+}
+
+h3{
+    width: calc(100% - 20px);
+    text-align: center;
+}
+
+p{
+    margin-top: 0;
+    text-align: center;
+    font-size: 12px;
+    color: #ec4434;
+}
+
+.gps-nav {
+    width: 100%;
+    background-color:  #04192f;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--gelo);
+    justify-content: center;
+    color: var(--azul);
+}
+
+.gps-nav h4 {
+    margin: 0;
+    font-size: 1.5em;
+}
+
+ #map {
+    height: 700px; /* Defina a altura do mapa conforme necessário */
+    width: 100%;
+}
+
+#map iframe{
+    width: 100%;
+    height: 100%;
+}
+
+.page-content-maps{
+    margin: 0%;
+    padding: 0%;
+}
+
+h5{
+    width: calc(100% - 20px);
+    text-align: center;
+}
+
+.sobre-navbar {
+    width: 100%;
+    background-color:  #04192f;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--gelo);
+    justify-content: center;
+    color: var(--azul);
+}
+
+.sobre-navbar h5 {
+    margin: 0;
+    font-size: 1.5em;
+}
+
+.sobre-content {
+    background-color: #04192f; /* Cor de fundo definida */
+    padding: 20px; /* Margem interna para o conteúdo */
+    min-height: calc(100vh - 140px); /* Ajusta a altura para preencher o espaço */
+    box-sizing: border-box; /* Inclui padding no cálculo de largura/altura */
+    overflow-y: auto; /* Habilita o scroll se o conteúdo ultrapassar a altura */
+}
+
+h6{
+    text-align:left;
+    color: var(--gelo);
+    margin-top: 5px;
+    margin-bottom: 0%;
+    font-size: 20px;
+}
+.content-sobre p{
+    text-align:left;
+    color: var(--gelo);
+    font-size: 15px;
+    overflow: scroll;
+    scrollbar-width: none;
+}
+
+.content-sobre::-webkit-scrollbar { 
+    display: none; /* Chrome, Safari e Edge */
+}
+
+.config-content {
+    display: flex;
+    flex-direction: column;
+    margin-top: 25vh;
+    align-items: center;
+    height: 100vh; /* Ajusta para centralizar no centro vertical da tela */
+    text-align: center; 
+}
+
+.config-content .bloco {
+    margin: 15px 0; /* Adiciona espaço entre os itens */
+    width: 80%; /* Define uma largura consistente para todos os blocos */
+    max-width: 400px; /* Define um limite de largura para blocos maiores */
+}
+
+.config-content a {
+    font-size: 18px;
+    color: #2a2a2a;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    background-color: var(--gelo);
+    display: flex; /* Habilita o Flexbox */
+    justify-content: space-between; /* Espaça o texto e o ícone */
+    align-items: center;
+}
+
+.config-content a i {
+    font-size: 20px; /* Ajusta o tamanho do ícone */
+    color: #2a2a2a; /* Cor do ícone */
+}
+
+.link-text {
+    flex: 1; /* Ocupa o espaço disponível */
+    text-align: left; /* Alinha o texto à esquerda */
+}
+
+.conta-nav {
+    width: 100%;
+    background-color: #04192f;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    color: var(--azul);
+}
+
+.conta-nav a {
+    position: absolute;
+    left: 15px; /* Ajuste a posição do ícone */
+    color: var(--azul);
+}
+
+.conta-nav .conta-texto {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: var(--azul);
+}
+
+.icon{
+    font-size: 25px;
+}
+
+.colaboradores{
+    background-color: #04192f; /* Cor de fundo definida */
+    padding: 20px; /* Margem interna para o conteúdo */
+    min-height: calc(100vh - 140px); /* Ajusta a altura para preencher o espaço */
+    box-sizing: border-box; /* Inclui padding no cálculo de largura/altura */
+    overflow-y: auto; /* Habilita o scroll se o conteúdo ultrapassar a altura */
+}
+
+.colaboradores p{
+    text-align:center;
+    color: var(--gelo);
+    font-size: 15px;
+    overflow: scroll;
+    scrollbar-width: none;
+}
+
+.conta-content {
+    position: relative; /* Necessário para o posicionamento do placeholder */
+    
+}
+
+.conta-content textarea {
+    background-color: #f1f1f1;
+    width: 400px;
+    height: auto; /* Deixa a altura automática */
+    padding: 10px; /* Adiciona espaçamento interno */
+    font-size: 16px; /* Tamanho da fonte */
+    border: 1px solid #ccc; /* Borda do textarea */
+    border-radius: 4px; /* Cantos arredondados */
+    box-sizing: border-box; /* Inclui o padding nas dimensões do textarea */
+    overflow: hidden; /* Esconde a barra de rolagem */
+    resize: none; /* Impede o redimensionamento manual pelo usuário */
+}
+
+.conta-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+textarea {
+    width: 100%;
+    height: 100px; /* Altura padrão do textarea */
+    padding: 10px;
+    resize: none; /* Desativa o redimensionamento do textarea */
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    box-sizing: border-box; /* Para incluir o padding no cálculo da largura */
+}
+
+button {
+    background-color: #2196f3;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%; /* Faz o botão ocupar toda a largura */
+}
+
+button:hover {
+    background-color: #1976d2;
+}
+
+/* conta */
+
+/* Adicione isso para garantir que todos os inputs e botões tenham box-sizing */
+* {
+    box-sizing: border-box; /* Inclui padding e border no tamanho total */
+}
+
+input[type="text"], 
+input[type="email"], 
+input[type="password"],
+textarea,
+button {
+    width: calc(100% - 20px); /* A largura é a mesma para inputs e botões */
+    padding: 10px; /* Padding interno igual */
+    margin-bottom: 10px; /* Espaçamento inferior */
+    border: 1px solid #ccc; /* Borda */
+    border-radius: 4px; /* Bordas arredondadas */
+}
+
+/* Ajuste para botões, se precisar de estilos específicos */
+button {
+    background-color: #2196f3; /* Cor do botão */
+    color: white; /* Cor do texto */
+    border: none; /* Sem borda */
+    cursor: pointer; /* Muda o cursor para mão */
+    margin-bottom: 10px; /* Espaçamento inferior */
+}
+
+button:hover {
+    background-color: #1976d2; /* Cor ao passar o mouse */
+}
+
+
+form {
+    display: flex;
+    flex-direction: column; /* Organiza os itens na vertical */
+    align-items: flex-start; /* Alinha os itens à esquerda */
+}
+
+.input-group {
+    width: 100%; /* Faz os grupos ocuparem toda a largura */
+    margin-bottom: 15px; /* Espaçamento entre os grupos */
+}
+
+label {
+    font-weight: bold; /* Deixa o texto do label em negrito */
+    margin-bottom: 5px; /* Espaçamento abaixo do label */
+    color: #2a2a2a; /* Cor do texto */
+}
+
+input[type="date"],
+select {
+    width: 100%; /* Ajusta a largura dos inputs e selects */
+    padding: 12px; /* Aumenta o preenchimento interno */
+    margin-top: 5px; /* Espaço acima do campo */
+    margin-bottom: 15px; /* Espaço abaixo do campo */
+    border: 1px solid #ccc; /* Borda padrão */
+    border-radius: 4px; /* Cantos arredondados */
+    box-sizing: border-box; /* Inclui padding nas dimensões */
+    font-size: 16px; /* Tamanho da fonte */
+}
+
+button {
+    background-color: #2196f3;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%; /* Botão ocupa toda a largura */
+    margin-top: 10px; /* Espaço acima do botão */
+}
+
+button:hover {
+    background-color: #1976d2;
+}
+
+/* permissoes */
+
+.permissoes-container {
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    margin: 20px;
+    transition: transform 0.3s;
+}
+
+.permissoes-container:hover {
+    transform: translateY(-5px);
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #2a2a2a;
+}
+
+.permissao-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.permissao-item:hover {
+    background-color: #f0f0f0;
+}
+
+.permissao-item label {
+    font-size: 16px;
+    color: #2a2a2a;
+}
+
+.permissao-item input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+}
+
+button {
+    background-color: #2196f3;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #1976d2;
+}
+
+/* noti */
+
+
+.notificacoes-content {
+    padding: 20px;
+}
+
+.notification-item {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 12px;
+    display: flex;
+    align-items: flex-start;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s, transform 0.2s;
+    font-family: 'Arial', sans-serif;
+}
+
+.notification-item:hover {
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    transform: scale(1.02);
+}
+
+.notification-icon {
+    font-size: 30px;
+    color: #2196f3;
+    background-color: #e3f2fd;
+    border-radius: 50%;
+    padding: 12px;
+    margin-right: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.notification-text {
+    flex-grow: 1;
+}
+
+.notification-title {
+    font-weight: 600;
+    font-size: 17px;
+    color: #333;
+    margin-bottom: 4px;
+    line-height: 1.3;
+}
+
+.notification-time {
+    font-size: 14px;
+    color: #777;
+}
+
+.alert-ativado .notification-icon {
+    color: #ff5722;
+    background-color: #ffe6e1;
+}
+
+.alert-contato .notification-icon {
+    color: #2196f3;
+    background-color: #e1f5fe;
+}
+
+.alert-localizacao .notification-icon {
+    color: #4caf50;
+    background-color: #e8f5e9;
+}
+
+.form-button {
+    width: 100%; /* Faz o botão ocupar toda a largura disponível */
+    padding: 10px; /* Adiciona um pouco de espaço interno */
+    background-color: #2196f3; /* Cor de fundo (pode ajustar) */
+    color: white; /* Cor do texto */
+    border: none; /* Remove borda padrão */
+    border-radius: 4px; /* Bordas arredondadas */
+    cursor: pointer; /* Muda o cursor ao passar o mouse */
+    font-size: 16px; /* Tamanho da fonte */
+    display: block; /* Para que os botões fiquem em blocos */
+    margin-top: 10px; /* Espaço acima do botão */
+}
+
+/* Estilo do input para garantir que tenha a mesma largura */
+input[type="text"] {
+    width: 100%; /* Faz o input ocupar toda a largura disponível */
+    padding: 10px; /* Adiciona espaço interno */
+    border: 1px solid #ccc; /* Borda padrão */
+    border-radius: 4px; /* Bordas arredondadas */
+    margin-top: 10px; /* Espaço acima do input */
+}
+
+.page-content-login {
+    width: 100%;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh; /* Ajusta para centralizar no centro vertical da tela */
+    text-align: center; 
+}
+
+.imglogin {
+    width: 250px;
+    height: 250px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.labelemail, .labelsenha {
+    display: flex;
+    margin-bottom: 10px;
+    color: #2a2a2a;
+    font-weight: bold;
+    width: 250px;
+}
+
+.loginForm{
+    width: 250px; /* Mesma largura da imagem */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Centraliza os campos dentro do formulário */
+    padding: 20px;
+    margin: 20px;
+}
+
+button:hover {
+    background-color: #04192f;
+}
+
+.alogin {
+    color: #ee0606;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.plogin{
+    color:#2a2a2a;
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 14px;
+    width: 100%;
+
+}
+
+.btnlogin{
+    margin-top: 15px; /* Espaço acima do botão */
+    padding: 10px 20px;
+    background-color: #0494d3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.login-nav{
+    width: 100%;
+    background-color:  #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--azul);
+}
+
+.divForm{
+    padding: 20px; /* Adiciona espaçamento interno */
+    border: 1px solid #007BFF; /* Borda azul */
+    border-radius: 10px; /* Bordas arredondadas */
+    background-color: #fff; /* Fundo branco */
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.5); /* Sombra azul */
+}
+
+.page-content-cad {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+    background-color: #04192f;
+    height: 100vh;
+}
+
+.divcadForm {
+    width: 100%;
+    max-width: 400px; /* Define o tamanho máximo do formulário */
+    background-color: #032242;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(4, 148, 211, 0.6);
+    padding: 20px;
+}
+
+/* Estilo para o formulário */
+.formCadastro {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select,
+input[type="date"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+select:focus,
+input[type="date"]:focus {
+    border-color: var(--azul);
+    outline: none;
+}
+
+button {
+    width: 100%;
+    background-color: var(--azul);
+    color: var(--branco);
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #1976d2;
+}
+
+/* Links */
+p {
+    text-align: center;
+    font-size: 14px;
+}
+
+a {
+    color: var(--azul);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Responsividade para dispositivos móveis */
+@media (max-width: 768px) {
+    .divcadForm {
+        padding: 15px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    .divcadForm input[type="text"],
+    .divcadForm input[type="email"],
+    .divcadForm input[type="password"],
+    .divcadForm select,
+    .divcadForm input[type="date"] {
+        padding: 10px;
+        font-size: 14px;
+        color: #ffff; /* Cor branca apenas para cadastro */
+    }
+}
+
+.lblnome{
+    color: #ffff;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.lblemail{
+    color: #ffff;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.lblsexo{
+    color: #ffff;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.lbldtnasc{
+    color: #ffff;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.lblcriarsenha{
+    color: #ffff;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.lblconfsenha{
+    color: #ffff;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+select {
+    color: #ffff; /* Cor do texto preto para o select */
+}
+
+option {
+    color: #2a2a2a; /* Cor preta para as opções */
+}
+
+#dataNascimento{
+    color: #ffff;
+}
+
+/* Correção apenas para a página de login */
+.page-content-login input[type="email"],
+.page-content-login input[type="password"] {
+    color: #000; /* Define a cor do texto como preto */
+}
+
+/* Garantindo foco com cor preta no login */
+.page-content-login input[type="email"]:focus,
+.page-content-login input[type="password"]:focus {
+    color: #000; /* Define a cor preta ao focar no campo */
+    border-color: var(--azul); /* Mantém o destaque no foco */
+}
+
+.colaboradores{
+    font-family: 'Times New Roman', Times, serif;
+}
+.content-sobre{
+    font-family: 'Times New Roman', Times, serif;
+}
